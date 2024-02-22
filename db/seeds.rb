@@ -11,3 +11,7 @@
 ['AAA', 'BBB', 'CCC', 'DDD', 'EEE', 'FFF', 'GGG', 'HHH', 'III', 'JJJ'].each do |code|
   Airport.find_or_create_by!(code: code)
 end
+
+[1, 2, 3, 4, 5, 6, 7, 8, 9].each do |id|
+  Flight.find_or_create_by!(departure_airport_id: id, arrival_airport_id: (id + 1))
+end
