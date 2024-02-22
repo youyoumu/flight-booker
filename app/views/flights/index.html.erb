@@ -1,2 +1,11 @@
-<h1>Flights#index</h1>
-<p>Find me in app/views/flights/index.html.erb</p>
+<h1>Find Flights</h1>
+<%= form_with url: 'flights', method: 'get' do |f| %>
+  <%= select_tag(:departure_airport_code, options_for_select(@airport_codes)) %>
+<% end %>
+<% unless @flights.nil? %>
+  <ul>
+    <% @flights.each do |flight| %>
+      <li> <%= link_to flight.code, flight_path(flight) %> </li>
+    <% end %>
+  </ul>
+<% end %>
