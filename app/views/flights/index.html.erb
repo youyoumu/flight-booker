@@ -1,6 +1,13 @@
 <h1>Find Flights</h1>
 <%= form_with url: 'flights', method: 'get' do |f| %>
-  <%= select_tag(:departure_airport_code, options_for_select(@airport_codes)) %>
+  <%= f.label :departure_airport_id, 'Departure airport:' %>
+  <%= select_tag(:departure_airport_id, options_for_select(@airport_codes)) %>
+  <%= f.label :arrival_airport_id, 'Arrival airport:' %>
+  <%= select_tag(:arrival_airport_id, options_for_select(@airport_codes)) %>
+  <%= f.label :number_of_passengers, 'Number of passengers' %>
+  <%= select_tag(:number_of_passengers, options_for_select([1, 2, 3, 4])) %>
+  <%= f.label :depature_date, 'Departure date' %>
+  <%= select_tag(:depature_date, options_for_select(@flight_dates)) %>
 <% end %>
 <% unless @flights.nil? %>
   <ul>
