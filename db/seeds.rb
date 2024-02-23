@@ -16,5 +16,5 @@ date = 1
 [1, 2, 3, 4, 5, 6, 7, 8, 9].each do |id|
   Flight.find_or_create_by!(departure_airport_id: id, arrival_airport_id: (id + 1),
   departure_time: DateTime.new(2024, 2, date, 13, 30, 0))
-  date += 1
+  date += 1 if date < 7
 end
