@@ -8,6 +8,7 @@
   <%= select_tag(:number_of_passengers, options_for_select([1, 2, 3, 4])) %>
   <%= f.label :depature_date, 'Departure date' %>
   <%= select_tag(:depature_date, options_for_select(@flight_dates)) %>
+  <%= f.submit 'Search' %>
 <% end %>
 <% unless @flights.nil? %>
   <ul>
