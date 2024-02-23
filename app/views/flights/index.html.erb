@@ -12,9 +12,11 @@
   <%= f.submit 'Search' %>
 <% end %>
 <% unless @flights.nil? %>
-  <ul>
+  <%= form_with url: 'bookings', method: 'get' do |f|%>
     <% @flights.each do |flight| %>
-      <li> <%= link_to "#{flight.departure_airport.code} to #{flight.arrival_airport.code}", flight_path(flight) %> </li>
+      <%= f.label :flight_id, "#{flight.departure_airport.code} to #{flight.arrival_airport.code} #{flight.departure_time}", value: flight.id %>
+      <%= f.radio_button :flight_id, flight.id %>
+      <%= f.submit 'Book' %>
     <% end %>
-  </ul>
+  <% end %>
 <% end %>
