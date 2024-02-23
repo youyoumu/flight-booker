@@ -14,7 +14,7 @@
 <% unless @flights.nil? %>
   <ul>
     <% @flights.each do |flight| %>
-      <li> <%= link_to "#{flight.departure_airport_id} to #{flight.arrival_airport_id}", flight_path(flight) %> </li>
+      <li> <%= link_to "#{flight.departure_airport.code} to #{flight.arrival_airport.code}", flight_path(flight) %> </li>
     <% end %>
   </ul>
 <% end %>
