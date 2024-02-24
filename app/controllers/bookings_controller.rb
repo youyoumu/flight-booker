@@ -11,4 +11,8 @@ class BookingsController < ApplicationController
       end
     end
   end
+
+  def create
+
+  end
 end
