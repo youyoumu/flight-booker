@@ -4,19 +4,20 @@
   <%= select_tag(:departure_airport_id, options_for_select(@airport_codes)) %>
   <%= f.label :arrival_airport_id, 'Arrival airport:' %>
   <%= select_tag(:arrival_airport_id, options_for_select(@airport_codes)) %>
-  <%= f.label :number_of_passengers, 'Number of passengers' %>
-  <%= select_tag(:number_of_passengers, options_for_select([1, 2, 3, 4])) %>
+  <%= f.label :num_tickets, 'Number of passengers' %>
+  <%= select_tag(:num_tickets, options_for_select([1, 2, 3, 4])) %>
   <%= f.label :departure_date, 'Departure date' %>
   <%= select_tag(:departure_date, options_for_select(@flight_dates)) %>
   <%= f.hidden_field :search, value: true %>
   <%= f.submit 'Search' %>
 <% end %>
 <% unless @flights.nil? %>
-  <%= form_with url: 'bookings', method: 'get' do |f|%>
+  <%= form_with url: 'bookings/new', method: 'get' do |f|%>
     <% @flights.each do |flight| %>
       <%= f.label :flight_id, "#{flight.departure_airport.code} to #{flight.arrival_airport.code} #{flight.departure_time}", value: flight.id %>
       <%= f.radio_button :flight_id, flight.id %>
       <%= f.submit 'Book' %>
+      <%= f.hidden_field :num_tickets, value: @num_tickets %>
     <% end %>
   <% end %>
 <% end %>
