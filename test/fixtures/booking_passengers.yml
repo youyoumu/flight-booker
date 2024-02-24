@@ -1,0 +1,18 @@
+# == Schema Information
+#
+# Table name: booking_passengers
+#
+#  id           :bigint           not null, primary key
+#  booking_id   :bigint           not null
+#  passenger_id :bigint           not null
+#  created_at   :datetime         not null
+#  updated_at   :datetime         not null
+#
+
+one:
+  booking_id: one
+  passenger_id: one
+
+two:
+  booking_id: two
+  passenger_id: two
