@@ -6,6 +6,8 @@ class BookingsController < ApplicationController
 
       @booking = Booking.new
       @num_tickets.times { @booking.passengers.build }
+    else
+      redirect_to flights_path
     end
   end
 
@@ -14,7 +16,13 @@ class BookingsController < ApplicationController
     if @booking.save
       redirect_to booking_path(@booking)
     else
-      render :new, status: :unprocessable_entity
+      if Flight.exists?(params[:booking][:flight_id])
+        @flight = Flight.find(params[:booking][:flight_id])
+        @num_tickets = params[:booking][:num_tickets].to_i
+        render :new, status: :unprocessable_entity
+      else
+        redirect_to flights_path
+      end
     end
   end
 
