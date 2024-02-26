@@ -1,23 +1,29 @@
-<h1>Find Flights</h1>
-<%= form_with url: 'flights', method: 'get' do |f| %>
-  <%= f.label :departure_airport_id, 'Departure airport:' %>
-  <%= f.collection_select :departure_airport_id, Airport.order(:code), :id, :code %>
-  <%= f.label :arrival_airport_id, 'Arrival airport:' %>
-  <%= f.collection_select :arrival_airport_id, Airport.order(:code), :id, :code %>
-  <%= f.label :num_tickets, 'Number of passengers' %>
-  <%= select_tag(:num_tickets, options_for_select([1, 2, 3, 4])) %>
-  <%= f.label :departure_date, 'Departure date' %>
-  <%= select_tag(:departure_date, options_for_select(@flight_dates)) %>
-  <%= f.hidden_field :search, value: true %>
-  <%= f.submit 'Search' %>
-<% end %>
-<% unless @flights.nil? %>
-  <%= form_with url: 'bookings/new', method: 'get' do |f|%>
-    <% @flights.each do |flight| %>
-      <%= f.label :flight_id, "#{flight.departure_airport.code} to #{flight.arrival_airport.code} #{flight.departure_time}", value: flight.id %>
-      <%= f.radio_button :flight_id, flight.id %>
-      <%= f.submit 'Book' %>
-      <%= f.hidden_field :num_tickets, value: @num_tickets %>
-    <% end %>
+<div class="container">
+  <h1>Find Flights</h1>
+</div>
+<div class="container">
+  <%= form_with url: 'flights', method: 'get' do |f| %>
+    <%= f.label :departure_airport_id, 'Departure airport:' %>
+    <%= f.collection_select :departure_airport_id, Airport.order(:code), :id, :code %>
+    <%= f.label :arrival_airport_id, 'Arrival airport:' %>
+    <%= f.collection_select :arrival_airport_id, Airport.order(:code), :id, :code %>
+    <%= f.label :num_tickets, 'Number of passengers' %>
+    <%= select_tag(:num_tickets, options_for_select([1, 2, 3, 4])) %>
+    <%= f.label :departure_date, 'Departure date' %>
+    <%= select_tag(:departure_date, options_for_select(@flight_dates)) %>
+    <%= f.hidden_field :search, value: true %>
+    <%= f.submit 'Search' %>
   <% end %>
+</div>
+<% unless @flights.nil? %>
+  <div class="container">
+    <%= form_with url: 'bookings/new', method: 'get' do |f|%>
+      <% @flights.each do |flight| %>
+        <%= f.radio_button :flight_id, flight.id %>
+        <%= f.label :flight_id, "#{flight.departure_airport.code} to #{flight.arrival_airport.code} #{flight.departure_time}", value: flight.id %>
+        <%= f.submit 'Book' %>
+        <%= f.hidden_field :num_tickets, value: @num_tickets %>
+      <% end %>
+    <% end %>
+  </div>
 <% end %>
