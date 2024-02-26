@@ -27,7 +27,11 @@ class BookingsController < ApplicationController
   end
 
   def show
-
+    if Booking.exists?(params[:id])
+      @booking = Booking.find(params[:id])
+    else
+      redirect_to flights_path
+    end
   end
 
   private
