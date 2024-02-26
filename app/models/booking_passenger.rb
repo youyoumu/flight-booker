@@ -9,6 +9,6 @@
 #  updated_at   :datetime         not null
 #
 class BookingPassenger < ApplicationRecord
-  belongs_to :booking_id
-  belongs_to :passenger_id
+  belongs_to :booking
+  belongs_to :passenger
 end
