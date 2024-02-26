@@ -6,7 +6,7 @@
 <h2>Booking form</h2>
 <%= form_with model: @booking do |f|%>
   <%= f.fields_for :passengers do |passengers_f| %>
-    <div>
+    <div class="grid" >
       <%= passengers_f.label :name, 'Name:' %>
       <%= passengers_f.text_field :name %>
       <%= passengers_f.label :email, 'Email:' %>
