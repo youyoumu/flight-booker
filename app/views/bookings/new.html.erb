@@ -4,15 +4,13 @@
 <div>Arrival airport: <%= @flight.arrival_airport.code %> </div>
 <div>Departure time: <%= @flight.departure_time %> </div>
 <h2>Booking form</h2>
-<%= form_with model: @booking, local: true do |f|%>
-  <% @num_tickets.times do |i| %>
+<%= form_with model: @booking do |f|%>
+  <%= f.fields_for :passengers do |passengers_f| %>
     <div>
-      <%= f.fields_for @passengers[i] do |sub_f| %>
-        <%= sub_f.label :name, 'Name:' %>
-        <%= sub_f.text_field :name %>
-        <%= sub_f.label :email, 'Email:' %>
-        <%= sub_f.email_field :email %>
-      <% end %>
+      <%= passengers_f.label :name, 'Name:' %>
+      <%= passengers_f.text_field :name %>
+      <%= passengers_f.label :email, 'Email:' %>
+      <%= passengers_f.email_field :email %>
     </div>
   <% end %>
   <%= f.submit 'Submit' %>

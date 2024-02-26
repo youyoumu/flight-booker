@@ -5,10 +5,7 @@ class BookingsController < ApplicationController
       @num_tickets = params[:num_tickets].to_i
 
       @booking = Booking.new
-      @passengers = []
-      @num_tickets.times do
-        @passengers << Passenger.new
-      end
+      @num_tickets.times { @booking.passengers.build }
     end
   end
 
