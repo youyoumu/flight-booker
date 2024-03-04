@@ -27,3 +27,9 @@
     <% end %>
   </div>
 <% end %>
+<div data-controller="hello" class="container">
+  <input type="text-area" data-action="hello#check" data-hello-target="textArea">
+  <div data-hello-target="length"></div>
+  <div data-hello-target="warning" style="display:none">10 char exceeded!</div>
+  <button data-action="hello#check">test</button>
+</div>

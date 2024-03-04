@@ -15,7 +15,7 @@ default: &default
   # For details on connection pooling, see Rails configuration guide
   # http://guides.rubyonrails.org/configuring.html#database-pooling
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  username: yym2 # role previously added
+  username: yym # role previously added
   password: <%= ENV['DATABASE_PASSWORD'] %> # variable previously added
 # You must remove the '+' signs to be able to migrate your database
 
