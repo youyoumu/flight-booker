@@ -10,7 +10,8 @@
 #
 class Passenger < ApplicationRecord
   has_many :booking_passengers
-  has_many :booking, through: :booking_passengers
+  has_many :bookings, through: :booking_passengers
   validates :name, presence: true
   validates :email, presence: true
+  accepts_nested_attributes_for :bookings
 end

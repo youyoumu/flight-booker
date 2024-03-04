@@ -27,6 +27,7 @@ class BookingsController < ApplicationController
   end
 
   def show
+    @passenger = Passenger.new
     if Booking.exists?(params[:id])
       @booking = Booking.find(params[:id])
     else

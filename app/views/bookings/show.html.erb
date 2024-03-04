@@ -6,6 +6,22 @@
       <li> <%= passenger.name %> </li>
     <% end %>
   </ul>
+  <%= link_to 'Add new passenger', new_passenger_path(booking_id: @booking.id) %>
+  <div data-controller="booking">
+    <button data-action="click->booking#addPassenger">Add new passenger</button>
+    <div data-booking-target="passengerForm" style="display:none">
+      <h3>New passengers</h3>
+      <%= form_with model: @passenger do |f|%>
+        <%= f.label :booking_id, "Booking ID"%>
+        <%= f.text_field :booking_id, value: "#{@booking.id}"  %>
+        <%= f.label :name, "Name:" %>
+        <%= f.text_field :name %>
+        <%= f.label :email, "Email:" %>
+        <%= f.email_field :email %>
+        <%= f.submit "Submit" %>
+      <% end %>
+    </div>
+  </div>
   <h2>Flight details</h2>
   <div>Flight ID: <%= @booking.flight.id %> </div>
   <div>Departure airport: <%= @booking.flight.departure_airport.code %> </div>
