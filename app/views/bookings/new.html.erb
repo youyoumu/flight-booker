@@ -1,19 +1,20 @@
-<h1>Flight details</h1>
-<div>Flight ID: <%= @flight.id %> </div>
-<div>Departure airport: <%= @flight.departure_airport.code %> </div>
-<div>Arrival airport: <%= @flight.arrival_airport.code %> </div>
-<div>Departure time: <%= @flight.departure_time %> </div>
-<h2>Booking form</h2>
-<%= form_with model: @booking do |f|%>
-  <%= f.hidden_field :num_tickets, value: @num_tickets %>
-  <%= f.hidden_field :flight_id, value: @flight.id %>
-  <%= f.fields_for :passengers do |passengers_f| %>
-    <div class="grid" >
-      <%= passengers_f.label :name, 'Name:' %>
-      <%= passengers_f.text_field :name %>
-      <%= passengers_f.label :email, 'Email:' %>
-      <%= passengers_f.email_field :email %>
-    </div>
+<div class="container">
+  <h1>Flight details</h1>
+  <div>Flight ID: <%= @flight.id %> </div>
+  <div>Departure airport: <%= @flight.departure_airport.code %> </div>
+  <div>Arrival airport: <%= @flight.arrival_airport.code %> </div>
+  <div>Departure time: <%= @flight.departure_time %> </div>
+  <h2>Booking form</h2>
+  <%= form_with model: @booking do |f|%>
+    <%= f.hidden_field :flight_id, value: @flight.id %>
+    <%= f.fields_for :passengers do |passengers_f| %>
+      <div class="grid" >
+        <%= passengers_f.label :name, 'Name:' %>
+        <%= passengers_f.text_field :name %>
+        <%= passengers_f.label :email, 'Email:' %>
+        <%= passengers_f.email_field :email %>
+      </div>
+    <% end %>
+    <%= f.submit 'Submit' %>
   <% end %>
-  <%= f.submit 'Submit' %>
-<% end %>
+</div>
