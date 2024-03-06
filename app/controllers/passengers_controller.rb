@@ -4,18 +4,21 @@ class PassengersController < ApplicationController
   end
 
   def create
-    @passenger = Passenger.new(name: params[:passenger][:name], email: params[:passenger][:email])
+    @passenger = Passenger.new
+    booking = Booking.find(params[:bookings][:id].to_i)
+    @passenger.bookings << booking
+    @passenger.assign_attributes(passenger_params)
 
-    @passenger.bookings << Booking.find(params[:passenger][:booking_id].to_i)
-
-    return unless @passenger.save
-
-    redirect_to booking_path(Booking.find(params[:passenger][:booking_id].to_i))
+    if @passenger.save
+      redirect_to booking_path(booking)
+    else
+      # to do
+    end
   end
 
   private
 
   def passenger_params
-    params.require(:passenger).permit(:name, :email)
+    params.require(:passenger).permit(:name, :email, bookings_attributes: [:id])
   end
 end
