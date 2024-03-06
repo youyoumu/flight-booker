@@ -12,8 +12,10 @@
     <div data-booking-target="passengerForm" style="display:none">
       <h3>New passengers</h3>
       <%= form_with model: @passenger do |f|%>
-        <%= f.label :booking_id, "Booking ID"%>
-        <%= f.text_field :booking_id, value: "#{@booking.id}"  %>
+        <%= f.fields_for :bookings, @booking do |booking_f| %>
+          <%= booking_f.label :id, "Booking ID"%>
+          <%= booking_f.text_field :id, value: "#{@booking.id}"  %>
+        <% end %>
         <%= f.label :name, "Name:" %>
         <%= f.text_field :name %>
         <%= f.label :email, "Email:" %>
