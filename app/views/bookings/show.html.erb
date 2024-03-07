@@ -1,5 +1,7 @@
-<div class="container">
+<header class="container">
   <h1>Booking details</h1>
+</header>
+<main class="container">
   <h2>Attendees</h2>
   <ul>
     <% @booking.passengers.each do |passenger| %>
@@ -7,15 +9,21 @@
     <% end %>
   </ul>
   <div data-controller="booking">
-    <button data-action="click->booking#addPassenger">Add new passenger</button>
+    <p><button data-action="click->booking#addPassenger">Add new passenger</button></p>
     <div data-booking-target="passengerForm" style="display:none">
       <h3>New passengers</h3>
       <%= form_with model: @booking do |f|%>
         <%= f.fields_for :passengers, @booking.passengers.build do |passenger_f| %>
-          <%= passenger_f.label :name, 'Name:' %>
-          <%= passenger_f.text_field :name %>
-          <%= passenger_f.label :email, 'Email:' %>
-          <%= passenger_f.email_field :email %>
+          <div class="grid">
+            <%= passenger_f.label :name do %>
+              Name:
+              <%= passenger_f.text_field :name %>
+            <% end %>
+            <%= passenger_f.label :email do %>
+              Email:
+              <%= passenger_f.email_field :email %>
+            <% end %>
+          </div>
         <% end %>
         <%= f.submit "Submit" %>
       <% end %>
@@ -26,4 +34,4 @@
   <div>Departure airport: <%= @booking.flight.departure_airport.code %> </div>
   <div>Arrival airport: <%= @booking.flight.arrival_airport.code %> </div>
   <div>Departure time: <%= @booking.flight.departure_time %> </div>
-</div>
+</main>
